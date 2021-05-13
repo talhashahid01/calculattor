@@ -1,0 +1,106 @@
+package cal01;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class cal01 {
+
+	private JFrame frame;
+	private JTextField textField;
+	
+	
+	double first;
+	double second;
+	double result;
+	String operation;
+	String answer;
+	
+	
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					cal01 window = new cal01();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	 
+	public cal01() {
+		initialize();
+	}
+
+	
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(53, 32, 254, 50);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btn1 = new JButton("1");
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			String number = textField.getText()+btn1.getText();
+			textField.setText(number);
+			}
+		});
+		btn1.setBounds(10, 129, 50, 50);
+		frame.getContentPane().add(btn1);
+		
+		JButton btn2 = new JButton("2");
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String number = textField.getText()+btn2.getText();
+				textField.setText(number);
+				
+			}
+		});
+		btn2.setBounds(69, 129, 50, 50);
+		frame.getContentPane().add(btn2);
+		
+		JButton btnaddition = new JButton("+");
+		btnaddition.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				first= Double.parseDouble(textField.getText());
+				textField.setText("");
+			}
+		});
+		btnaddition.setBounds(132, 129, 50, 50);
+		frame.getContentPane().add(btnaddition);
+		
+		JButton btnEqual = new JButton("=");
+		btnEqual.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			String number;
+			second= Double.parseDouble(textField.getText());
+			if(operation == "+")
+			{
+				result = first + second;
+				answer = String.format("%.2f",result);
+				textField.setText(answer);
+			}
+			
+			}
+		});
+		btnEqual.setBounds(203, 129, 50, 50);
+		frame.getContentPane().add(btnEqual);
+	}
+}
